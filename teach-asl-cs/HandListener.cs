@@ -50,7 +50,7 @@ namespace TeachAslCsharp
             // Get the most recent frame and report some basic information
             Frame frame = controller.Frame();
 
-            string line = "";
+            List<double> data = new List<double>(182);
 
             foreach (Hand hand in frame.Hands)
             {
@@ -61,7 +61,8 @@ namespace TeachAslCsharp
                 Vector direction = hand.Direction;
 
                 // Calculate the hand's pitch, roll, and yaw angles
-                line += normal.Roll + " " + direction.Yaw;
+                data.Add(normal.Roll);
+                data.Add(direction.Yaw);
 
                 // Get the Arm bone
                 Arm arm = hand.Arm;
@@ -77,14 +78,20 @@ namespace TeachAslCsharp
                         bone = finger.Bone(boneType);
                         Vector prev = bone.PrevJoint - arm.WristPosition;
                         Vector next = bone.NextJoint - arm.WristPosition;
-                        line += " " + prev.x + " " + prev.y + " " + prev.z
-                            + " " + next.x + " " + next.y + " " + next.z
-                            + " " + bone.Direction.x + " " + bone.Direction.y + " " + bone.Direction.z;
+                        data.Add(prev.x);
+                        data.Add(prev.y);
+                        data.Add(prev.z);
+                        data.Add(next.x);
+                        data.Add(next.y);
+                        data.Add(next.z);
+                        data.Add(bone.Direction.x);
+                        data.Add(bone.Direction.y);
+                        data.Add(bone.Direction.z);
                     }
                 }
-
             }
-            
+            if(frame.Hands.Count == 1)
+                symbolCallback(classifier.Predict(data.ToArray()));
         }
     }
 }
