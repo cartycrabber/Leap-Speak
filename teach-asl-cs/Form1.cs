@@ -33,6 +33,7 @@ namespace TeachAslCsharp
             InitializeComponent();
             SetupSlideShow();
             SetupSymbolList();
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             readSymbol += SymbolReceived;
             classifier = new AslClassifier(readSymbol);
         }
@@ -79,6 +80,16 @@ namespace TeachAslCsharp
             {
                 SetStatusText("Hold it...");
             }
+        }
+
+        private void Form1_Resize(object Sender, EventArgs e)
+        {
+            //Size size = learnPage.ClientSize;
+            //float h_scale = (float)size.Width / (float)pictureBox.Image.Width;
+            //float v_scale = (float)(size.Height - previousButton.Height) / (float)pictureBox.Image.Height;
+            //h_scale = Math.Min(h_scale, v_scale);
+
+            //pictureBox.Scale(new SizeF(h_scale, h_scale));
         }
 
         private void nextSymbol_Click(object sender, EventArgs e)

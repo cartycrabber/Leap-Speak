@@ -48,9 +48,9 @@
             // previousButton
             // 
             this.previousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.previousButton.Location = new System.Drawing.Point(6, 530);
+            this.previousButton.Location = new System.Drawing.Point(6, 578);
             this.previousButton.Name = "previousButton";
-            this.previousButton.Size = new System.Drawing.Size(386, 146);
+            this.previousButton.Size = new System.Drawing.Size(386, 98);
             this.previousButton.TabIndex = 1;
             this.previousButton.Text = "Previous Symbol";
             this.previousButton.UseVisualStyleBackColor = true;
@@ -63,16 +63,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.Location = new System.Drawing.Point(6, 6);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1423, 518);
+            this.pictureBox.Size = new System.Drawing.Size(1423, 566);
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;
             // 
             // nextSymbol
             // 
             this.nextSymbol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.nextSymbol.Location = new System.Drawing.Point(1080, 530);
+            this.nextSymbol.Location = new System.Drawing.Point(1080, 578);
             this.nextSymbol.Name = "nextSymbol";
-            this.nextSymbol.Size = new System.Drawing.Size(352, 146);
+            this.nextSymbol.Size = new System.Drawing.Size(352, 98);
             this.nextSymbol.TabIndex = 4;
             this.nextSymbol.Text = "Next Symbol";
             this.nextSymbol.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             // randomButton
             // 
             this.randomButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.randomButton.Location = new System.Drawing.Point(601, 431);
+            this.randomButton.Location = new System.Drawing.Point(628, 418);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(207, 114);
             this.randomButton.TabIndex = 2;
@@ -181,6 +181,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Text = "Teach ASL";
+            this.ResizeEnd += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.learnPage.ResumeLayout(false);
