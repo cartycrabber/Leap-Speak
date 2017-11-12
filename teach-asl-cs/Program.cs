@@ -14,6 +14,12 @@ namespace TeachAslCsharp
         [STAThread]
         static void Main()
         {
+            /*
+            AslClassifier classifier = new AslClassifier();
+            classifier.LoadTrainingData("samples.txt");
+            classifier.Train();
+            */
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
