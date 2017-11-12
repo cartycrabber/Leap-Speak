@@ -33,6 +33,7 @@ namespace TeachAslCsharp
         private int symbolCount = 0;
         private delegate void labelSetter(string text);
         private labelSetter setStatusWrapper;
+        private labelSetter setDetectedWrapper;
 
         public Form1()
         {
@@ -42,6 +43,7 @@ namespace TeachAslCsharp
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             readSymbol += SymbolReceived;
             setStatusWrapper += SetStatusText;
+            setDetectedWrapper += SetDetectedText;
 
             handListener = new HandListener(readSymbol);
             leapController = new Controller();
@@ -76,6 +78,11 @@ namespace TeachAslCsharp
             statusLabel.Text = status;
         }
 
+        private void SetDetectedText(string detected)
+        {
+            detectedLabel.Text = detected;
+        }
+
         private void SymbolReceived(int symbol_id)
         {
             ++symbolCount;
@@ -93,6 +100,8 @@ namespace TeachAslCsharp
             {
                 Invoke(setStatusWrapper, "Hold it...");
             }
+
+            Invoke(setDetectedWrapper, "Detected Symbol: " + symbolMapping.GetId(symbol_id));
         }
 
         private void Form1_Resize(object Sender, EventArgs e)

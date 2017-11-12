@@ -39,6 +39,7 @@
             this.randomButton = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.promptLabel = new System.Windows.Forms.Label();
+            this.detectedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.tabControl.SuspendLayout();
             this.learnPage.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // learnPage
             // 
+            this.learnPage.Controls.Add(this.detectedLabel);
             this.learnPage.Controls.Add(this.pictureBox);
             this.learnPage.Controls.Add(this.nextSymbol);
             this.learnPage.Controls.Add(this.previousButton);
@@ -184,6 +186,17 @@
             this.promptLabel.TabIndex = 0;
             this.promptLabel.Text = "Try the symbol for:";
             // 
+            // detectedLabel
+            // 
+            this.detectedLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.detectedLabel.AutoSize = true;
+            this.detectedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detectedLabel.Location = new System.Drawing.Point(397, 481);
+            this.detectedLabel.Name = "detectedLabel";
+            this.detectedLabel.Size = new System.Drawing.Size(292, 39);
+            this.detectedLabel.TabIndex = 5;
+            this.detectedLabel.Text = "Detected Symbol:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -197,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.learnPage.ResumeLayout(false);
+            this.learnPage.PerformLayout();
             this.practicePage.ResumeLayout(false);
             this.practicePage.PerformLayout();
             this.ResumeLayout(false);
@@ -216,6 +230,7 @@
         private System.Windows.Forms.Button randomButton;
         private System.Windows.Forms.TextBox symbolSearch;
         private System.Windows.Forms.ListBox symbolList;
+        private System.Windows.Forms.Label detectedLabel;
     }
 }
 
