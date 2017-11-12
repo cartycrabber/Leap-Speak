@@ -27,6 +27,8 @@ namespace TeachAslCsharp
         public delegate void SymbolReceiver(int symbol_id);
         private SymbolReceiver readSymbol;
         private AslClassifier classifier;
+        private HandListener handListener;
+        private Controller leapController;
 
         public Form1()
         {
@@ -35,7 +37,14 @@ namespace TeachAslCsharp
             SetupSymbolList();
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             readSymbol += SymbolReceived;
+
             classifier = new AslClassifier(readSymbol);
+            classifier.LoadTrainingData("samples.txt");
+            classifier.Train();
+
+            handListener = new HandListener();
+            leapController = new Controller();
+            leapController.AddListener(handListener);
         }
 
         private void SetupSlideShow()

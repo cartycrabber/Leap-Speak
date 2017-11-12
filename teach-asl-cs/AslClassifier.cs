@@ -9,6 +9,7 @@ using Accord.MachineLearning.VectorMachines.Learning;
 using Accord.Statistics.Kernels;
 using Accord.MachineLearning.VectorMachines;
 using System.Diagnostics;
+using Accord.IO;
 
 namespace TeachAslCsharp
 {
@@ -53,6 +54,11 @@ namespace TeachAslCsharp
             return true;
         }
 
+        public void LoadClassifier(string path)
+        {
+            svm = Serializer.Load<MulticlassSupportVectorMachine<Gaussian>>(path);
+        }
+
         public void Train()
         {
             Debug.WriteLine("Training classifier");
@@ -60,11 +66,15 @@ namespace TeachAslCsharp
             {
                 Learner = p => new SequentialMinimalOptimization<Gaussian>()
                 {
-                    Complexity = 10000.0
+                    CacheSize = 1000,
+                    UseKernelEstimation = true,
+                    UseComplexityHeuristic = true
                 }
             };
 
             svm = trainer.Learn(inputs, labels);
+
+            Serializer.Save(svm, "classifier.data");
 
             Debug.WriteLine("Done training classifier");
         }

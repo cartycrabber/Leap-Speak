@@ -16,8 +16,6 @@ namespace TeachAslCsharp
         {
             /*
             AslClassifier classifier = new AslClassifier();
-            classifier.LoadTrainingData("samples.txt");
-            classifier.Train();
             */
 
             Application.EnableVisualStyles();

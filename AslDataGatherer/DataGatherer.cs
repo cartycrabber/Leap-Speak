@@ -15,25 +15,16 @@ namespace TeachAslCsharp
 {
     class DataGathererListener : Listener
     {
-        private Object thisLock = new Object();
-
-        private void SafeWriteLine(String line)
-        {
-            lock (thisLock)
-            {
-                Console.WriteLine(line);
-            }
-        }
 
         public override void OnInit(Controller controller)
         {
             records = new List<string>();
-            SafeWriteLine("Initialized");
+            Console.WriteLine("Initialized");
         }
 
         public override void OnConnect(Controller controller)
         {
-            SafeWriteLine("Connected");
+            Console.WriteLine("Connected");
             /*controller.EnableGesture(Gesture.GestureType.TYPE_CIRCLE);
             controller.EnableGesture(Gesture.GestureType.TYPE_KEY_TAP);
             controller.EnableGesture(Gesture.GestureType.TYPE_SCREEN_TAP);
@@ -43,12 +34,12 @@ namespace TeachAslCsharp
         public override void OnDisconnect(Controller controller)
         {
             //Note: not dispatched when running in a debugger.
-            SafeWriteLine("Disconnected");
+            Console.WriteLine("Disconnected");
         }
 
         public override void OnExit(Controller controller)
         {
-            SafeWriteLine("Exited");
+            Console.WriteLine("Exited");
         }
 
         public List<string> records;
@@ -68,7 +59,7 @@ namespace TeachAslCsharp
             // Get the most recent frame and report some basic information
             Frame frame = controller.Frame();
 
-            //SafeWriteLine("Frame id: " + frame.Id
+            //Console.WriteLine("Frame id: " + frame.Id
             //            + ", timestamp: " + frame.Timestamp
             //            + ", hands: " + frame.Hands.Count
             //            + ", fingers: " + frame.Fingers.Count
@@ -79,21 +70,21 @@ namespace TeachAslCsharp
 
             foreach (Hand hand in frame.Hands)
             {
-                //SafeWriteLine("  Hand id: " + hand.Id
+                //Console.WriteLine("  Hand id: " + hand.Id
                 //            + ", palm position: " + hand.PalmPosition);
                 // Get the hand's normal vector and direction
                 Vector normal = hand.PalmNormal;
                 Vector direction = hand.Direction;
 
                 // Calculate the hand's pitch, roll, and yaw angles
-                //SafeWriteLine("  Hand pitch: " + direction.Pitch * 180.0f / (float)Math.PI + " degrees, "
+                //Console.WriteLine("  Hand pitch: " + direction.Pitch * 180.0f / (float)Math.PI + " degrees, "
                 //            + "roll: " + normal.Roll * 180.0f / (float)Math.PI + " degrees, "
                 //            + "yaw: " + direction.Yaw * 180.0f / (float)Math.PI + " degrees");
                 line += label + " " + normal.Roll + " " + direction.Yaw;
 
                 // Get the Arm bone
                 Arm arm = hand.Arm;
-                //SafeWriteLine("  Arm direction: " + arm.Direction
+                //Console.WriteLine("  Arm direction: " + arm.Direction
                 //            + ", wrist position: " + arm.WristPosition
                 //            + ", elbow position: " + arm.ElbowPosition);
                 line += " " + arm.Direction.x + " " + arm.Direction.y + " " + arm.Direction.z
@@ -102,7 +93,7 @@ namespace TeachAslCsharp
                 // Get fingers
                 foreach (Finger finger in hand.Fingers)
                 {
-                    //SafeWriteLine("    Finger id: " + finger.Id
+                    //Console.WriteLine("    Finger id: " + finger.Id
                     //            + ", " + finger.Type.ToString()
                     //            + ", length: " + finger.Length
                     //            + "mm, width: " + finger.Width + "mm");
@@ -112,7 +103,7 @@ namespace TeachAslCsharp
                     foreach (Bone.BoneType boneType in (Bone.BoneType[])Enum.GetValues(typeof(Bone.BoneType)))
                     {
                         bone = finger.Bone(boneType);
-                        //SafeWriteLine("      Bone: " + boneType
+                        //Console.WriteLine("      Bone: " + boneType
                         //            + ", start: " + bone.PrevJoint
                         //            + ", end: " + bone.NextJoint
                         //            + ", direction: " + bone.Direction);
@@ -194,7 +185,7 @@ namespace TeachAslCsharp
                                     listener.maxRecords = int.Parse(words[1]);
                                     Console.WriteLine("Set target records to " + listener.maxRecords);
                                 }
-                                catch (Exception e)
+                                catch (Exception)
                                 {
                                     Console.WriteLine("Enter an integer dummy");
                                 }
