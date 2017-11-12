@@ -26,9 +26,10 @@ namespace TeachAslCsharp
 
         public delegate void SymbolReceiver(int symbol_id);
         private SymbolReceiver readSymbol;
-        private HandListener listener;
         private HandListener handListener;
         private Controller leapController;
+
+        private int symbolCount = 0;
 
         public Form1()
         {
@@ -73,6 +74,9 @@ namespace TeachAslCsharp
 
         private void SymbolReceived(int symbol_id)
         {
+            ++symbolCount;
+            testLabel.Text = "Symbol: " + symbolMapping.GetId(symbol_id) + " " + symbolCount.ToString();
+
             if (symbol_id != desiredSymbol)
             {
                 lastUndesiredSymbol = DateTime.Now;
