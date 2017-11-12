@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace TeachAslCsharp
         private Controller leapController;
 
         private int symbolCount = 0;
+        private delegate void labelSetter(string text);
+        private labelSetter setStatusWrapper;
 
         public Form1()
         {
@@ -38,6 +41,7 @@ namespace TeachAslCsharp
             SetupSymbolList();
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             readSymbol += SymbolReceived;
+            setStatusWrapper += SetStatusText;
 
             handListener = new HandListener(readSymbol);
             leapController = new Controller();
@@ -75,7 +79,7 @@ namespace TeachAslCsharp
         private void SymbolReceived(int symbol_id)
         {
             ++symbolCount;
-            testLabel.Text = "Symbol: " + symbolMapping.GetId(symbol_id) + " " + symbolCount.ToString();
+            Debug.WriteLine("Symbol: " + symbolMapping.GetId(symbol_id) + " " + symbolCount.ToString());
 
             if (symbol_id != desiredSymbol)
             {
@@ -83,11 +87,11 @@ namespace TeachAslCsharp
             }
             else if (DateTime.Now.Subtract(lastUndesiredSymbol).Seconds > SUCCESS_DELAY)
             {
-                SetStatusText("You got it right!");
+                Invoke(setStatusWrapper, "You got it right!");
             }
             else
             {
-                SetStatusText("Hold it...");
+                Invoke(setStatusWrapper, "Hold it...");
             }
         }
 
@@ -123,6 +127,7 @@ namespace TeachAslCsharp
             if (symbolList.Focused || randomButton.Focused)
             {
                 symbolSearch.Text = symbolList.SelectedItem.ToString();
+                desiredSymbol = symbolMapping.GetName(symbolSearch.Text);
             }
             SetStatusText("Searching for " + symbolList.SelectedItem.ToString() + "...");
         }

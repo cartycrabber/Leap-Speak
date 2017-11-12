@@ -10,6 +10,7 @@ using System.Threading;
 using Leap;
 using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TeachAslCsharp
 {
@@ -91,7 +92,11 @@ namespace TeachAslCsharp
                 }
             }
             if(frame.Hands.Count == 1)
-                symbolCallback(classifier.Predict(data.ToArray()));
+            {
+                int result = classifier.Predict(data.ToArray());
+                Debug.WriteLine("Result: " + result);
+                symbolCallback(result);
+            }
         }
     }
 }
