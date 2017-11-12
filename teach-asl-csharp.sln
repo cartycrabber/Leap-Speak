@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teach-asl-csharp", "teach-asl-csharp\teach-asl-csharp.csproj", "{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "teach-asl-cs", "teach-asl-cs\teach-asl-cs.csproj", "{9AAC6587-174A-4770-A820-CB1A27EA32C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AslDataGatherer", "AslDataGatherer\AslDataGatherer.csproj", "{2822838F-7980-4537-AC2B-DC0EA4BAA375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,22 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Debug|x64.ActiveCfg = Debug|x64
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Debug|x64.Build.0 = Debug|x64
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Release|x64.ActiveCfg = Release|x64
-		{65312FBE-0F8F-4A95-ACD8-BB69F28CBD85}.Release|x64.Build.0 = Release|x64
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Debug|x64.Build.0 = Debug|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Release|x64.ActiveCfg = Release|Any CPU
+		{9AAC6587-174A-4770-A820-CB1A27EA32C8}.Release|x64.Build.0 = Release|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Debug|x64.Build.0 = Debug|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Release|x64.ActiveCfg = Release|Any CPU
+		{2822838F-7980-4537-AC2B-DC0EA4BAA375}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

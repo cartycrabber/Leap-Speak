@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /yr &quot;C:\Development\Hackital\LeapSDK\lib\x64\Leap.dll&quot; &quot;$(TargetDir)&quot;&#xD;&#xA;xcopy /yr &quot;C:\Development\Hackital\LeapSDK\lib\x64\LeapCSharp.dll&quot; &quot;$(TargetDir)&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="LeapCSharp.NET4.0">
+      <HintPath>..\..\LeapSDK\lib\LeapCSharp.NET4.0.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
