@@ -20,6 +20,7 @@ namespace TeachAslCsharp
 
         public HandListener(Form1.SymbolReceiver symbol_callback)
         {
+            classifier.LoadClassifier("classifier.data");
             symbolCallback = symbol_callback;
         }
 

@@ -21,11 +21,6 @@ namespace TeachAslCsharp
         MulticlassSupportVectorMachine<Gaussian> svm;
 
         public AslClassifier()
-        {
-            symbolCallback = callback;
-        }
-
-        public AslClassifier()
         { }
 
         public bool LoadTrainingData(string path)

@@ -38,12 +38,7 @@ namespace TeachAslCsharp
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             readSymbol += SymbolReceived;
 
-            classifier = new AslClassifier(readSymbol);
-//            classifier.LoadTrainingData("samples.txt");
-            classifier.LoadClassifier("classifier.data");
-//            classifier.Train();
-
-            handListener = new HandListener();
+            handListener = new HandListener(readSymbol);
             leapController = new Controller();
             leapController.AddListener(handListener);
         }
