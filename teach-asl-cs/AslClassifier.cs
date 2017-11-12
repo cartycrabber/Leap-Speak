@@ -20,9 +20,7 @@ namespace TeachAslCsharp
 
         MulticlassSupportVectorMachine<Gaussian> svm;
 
-        Form1.SymbolReceiver symbolCallback;
-
-        public AslClassifier(Form1.SymbolReceiver callback)
+        public AslClassifier()
         {
             symbolCallback = callback;
         }

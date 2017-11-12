@@ -15,6 +15,13 @@ namespace TeachAslCsharp
 {
     class HandListener : Listener
     {
+        Form1.SymbolReceiver symbolCallback;
+        AslClassifier classifier = new AslClassifier();
+
+        public HandListener(Form1.SymbolReceiver symbol_callback)
+        {
+            symbolCallback = symbol_callback;
+        }
 
         public override void OnInit(Controller controller)
         {

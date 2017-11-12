@@ -26,7 +26,7 @@ namespace TeachAslCsharp
 
         public delegate void SymbolReceiver(int symbol_id);
         private SymbolReceiver readSymbol;
-        private AslClassifier classifier;
+        private HandListener listener;
         private HandListener handListener;
         private Controller leapController;
 
