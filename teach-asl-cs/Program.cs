@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace teach_asl_cs
+namespace TeachAslCsharp
 {
     static class Program
     {

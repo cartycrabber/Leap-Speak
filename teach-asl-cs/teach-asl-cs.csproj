@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SymbolMapping.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,7 +104,6 @@
   <ItemGroup>
     <None Include="samples.txt" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="assets\letter-a.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leap;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,17 +10,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace teach_asl_cs
+namespace TeachAslCsharp
 {
     public partial class Form1 : Form
     {
-        string[] symbolImages = new string[0];
-        int symbolIndex = 3;
+        const int SUCCESS_DELAY = 2;
+
+        // slideshow variables
+        private string[] symbolImages = new string[0];
+        private int symbolIndex = 0;
+
+        private SymbolMapping symbolMapping = SymbolMapping.GetInstance();
+        private int desiredSymbol = -1;
+        private DateTime lastUndesiredSymbol = DateTime.Now;
+
+        public delegate void SymbolReceiver(int symbol_id);
+        private SymbolReceiver readSymbol;
+        private AslClassifier classifier;
 
         public Form1()
         {
             InitializeComponent();
             SetupSlideShow();
+            SetupSymbolList();
+            readSymbol += SymbolReceived;
+            classifier = new AslClassifier(readSymbol);
         }
 
         private void SetupSlideShow()
@@ -29,11 +44,40 @@ namespace teach_asl_cs
             UpdateImage();
         }
 
+        private void SetupSymbolList()
+        {
+            foreach (string symbol in symbolMapping.AllSymbols())
+            {
+                symbolList.Items.Add(symbol);
+            }
+        }
+
         private void UpdateImage()
         {
             if (symbolIndex < symbolImages.Length && symbolIndex >= 0)
             {
                 pictureBox.ImageLocation = symbolImages[symbolIndex];
+            }
+        }
+
+        private void SetStatusText(string status)
+        {
+            statusLabel.Text = status;
+        }
+
+        private void SymbolReceived(int symbol_id)
+        {
+            if (symbol_id != desiredSymbol)
+            {
+                lastUndesiredSymbol = DateTime.Now;
+            }
+            else if (DateTime.Now.Subtract(lastUndesiredSymbol).Seconds > SUCCESS_DELAY)
+            {
+                SetStatusText("You got it right!");
+            }
+            else
+            {
+                SetStatusText("Hold it...");
             }
         }
 
@@ -52,6 +96,47 @@ namespace teach_asl_cs
                 symbolIndex = symbolImages.Length - 1;
             }
             UpdateImage();
+        }
+
+        private void symbolList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (symbolList.Focused || randomButton.Focused)
+            {
+                symbolSearch.Text = symbolList.SelectedItem.ToString();
+            }
+            SetStatusText("Searching for " + symbolList.SelectedItem.ToString() + "...");
+        }
+
+        private void symbolSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (!symbolSearch.Focused)
+            {
+                // this'll happen when a symbol is selected from the list
+                return;
+            }
+
+            symbolList.Items.Clear();
+            foreach (string filtered in symbolMapping.AllSymbols().Where(s => s.ToLower().Contains(symbolSearch.Text)))
+            {
+                symbolList.Items.Add(filtered);
+            }
+            if (symbolList.Items.Count > 0)
+            {
+                symbolList.SelectedIndex = 0;
+            }
+        }
+
+        private void randomButton_Click(object sender, EventArgs e)
+        {
+            symbolSearch.Text = ""; // triggers a re-filter of filter list, sadly
+            symbolList.Items.Clear();
+            foreach (string symbol in symbolMapping.AllSymbols())
+            {
+                symbolList.Items.Add(symbol);
+            }
+
+            Random rand = new Random();
+            symbolList.SelectedIndex = rand.Next() % symbolList.Items.Count;
         }
     }
 }

@@ -10,9 +10,11 @@ namespace TeachAslCsharp
 
     class AslClassifier
     {
-        AslClassifier()
-        {
+        Form1.SymbolReceiver symbolCallback;
 
+        public AslClassifier(Form1.SymbolReceiver callback)
+        {
+            symbolCallback = callback;
         }
 
         void LoadTrainingData(string path)
