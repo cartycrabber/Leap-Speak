@@ -34,21 +34,27 @@ namespace TeachAslCsharp
         {
             Debug.WriteLine("Loading training data");
             string[] lines = File.ReadAllLines(path);
-            inputs = new double[lines.Length][];
-            labels = new int[lines.Length];
+            inputs = new double[lines.Length / 5][];
+            labels = new int[lines.Length / 5];
 
-            for(int i = 0; i < lines.Length; i++)
+            List<double[]> inputList = new List<double[]>();
+            List<int> labelList = new List<int>();
+
+            for(int i = 0; i < lines.Length; i += 5)
             {
                 try
                 {
                     string[] line = lines[i].Split(' ');
-                    labels[i] = int.Parse(line[0]);
-                    inputs[i] = Array.ConvertAll(line.Skip(1).ToArray(), Double.Parse);
+                    labelList.Add(int.Parse(line[0]));
+                    inputList.Add(Array.ConvertAll(line.Skip(1).ToArray(), Double.Parse));
                 } catch (Exception)
                 {
                     return false;
                 }
             }
+
+            inputs = inputList.ToArray();
+            labels = labelList.ToArray();
 
             Debug.WriteLine("Done loading training data");
             return true;
@@ -62,16 +68,21 @@ namespace TeachAslCsharp
         public void Train()
         {
             Debug.WriteLine("Training classifier");
+
             var trainer = new MulticlassSupportVectorLearning<Gaussian>()
             {
                 Learner = p => new SequentialMinimalOptimization<Gaussian>()
                 {
-                    CacheSize = 1000,
+                    CacheSize = 2000,
                     UseKernelEstimation = true,
                     UseComplexityHeuristic = true
                 }
             };
 
+            //double[][] inputSubset = new double[10000][];
+            //int[] labelSubset = new int[10000];
+            //Array.Copy(inputs, 0, inputSubset, 0, 10000);
+            //Array.Copy(labels, 0, labelSubset, 0, 10000);
             svm = trainer.Learn(inputs, labels);
 
             Serializer.Save(svm, "classifier.data");

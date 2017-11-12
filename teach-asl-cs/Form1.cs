@@ -39,8 +39,9 @@ namespace TeachAslCsharp
             readSymbol += SymbolReceived;
 
             classifier = new AslClassifier(readSymbol);
-            classifier.LoadTrainingData("samples.txt");
-            classifier.Train();
+//            classifier.LoadTrainingData("samples.txt");
+            classifier.LoadClassifier("classifier.data");
+//            classifier.Train();
 
             handListener = new HandListener();
             leapController = new Controller();
