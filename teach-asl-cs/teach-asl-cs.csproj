@@ -50,7 +50,7 @@
       <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net46\Accord.Statistics.dll</HintPath>
     </Reference>
     <Reference Include="LeapCSharp.NET4.0">
-      <HintPath>..\..\LeapSDK\lib\x64\LeapCSharp.NET4.0.dll</HintPath>
+      <HintPath>..\lib\LeapCSharp.NET4.0.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -188,8 +188,8 @@
     <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /yr "C:\Development\Hackital\LeapSDK\lib\x64\Leap.dll" "$(TargetDir)"
+    <PostBuildEvent>xcopy /yr "..\..\..\lib\Leap.dll" "$(TargetDir)"
 
-xcopy /yr "C:\Development\Hackital\LeapSDK\lib\x64\LeapCSharp.dll" "$(TargetDir)"</PostBuildEvent>
+xcopy /yr "..\..\..\lib\LeapCSharp.dll" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
